@@ -988,6 +988,11 @@
   dependencies:
     "function-bind" "^1.1.1"
 
+"heroicons@^2.0.11":
+  "integrity" "sha512-pjp6xFVNuc7So67RcHD0krrjkvxiUfNh1/48Pvi4SKVeT2qRlunWnKmqCpGpKGpvFl2rQSmkdHFXLVvgR145dg=="
+  "resolved" "https://registry.npmjs.org/heroicons/-/heroicons-2.0.11.tgz"
+  "version" "2.0.11"
+
 "ignore@^5.2.0":
   "integrity" "sha512-CmxgYGiEPCLhfLnpPp1MoRmifwEIOgjcHXxOBjv7mY96c+eWScsOP9c112ZyLdWHi0FxHjI+4uVhKYp/gcdRmQ=="
   "resolved" "https://registry.npmjs.org/ignore/-/ignore-5.2.0.tgz"
