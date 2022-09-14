@@ -9,6 +9,10 @@ module.exports = {
       fontFamily: {
         Bebas: ['Bebas Neue', 'cursive'],
       },
+      colors: {
+        'cerulean-blue': '#324FAE',
+        'dark-tangerine': '#FFB020'
+      }
     },
   },
   plugins: [],

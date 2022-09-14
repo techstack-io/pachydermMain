@@ -1,57 +1,92 @@
-const  Register = () => {
+// Import hooks
+import { useState } from 'react';
+
+const Register = () => {
+    const [name, setName] =useState('');
+    const [email, setEmail] =useState('');
+    const [password, setPassword] =useState('');
+    
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.table({ name, email, password });
+    };
+  
     return (
-        <div class="bg-grey-lighter min-h-screen flex flex-col">
-            <div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
-                <div class="bg-white px-6 py-8 rounded shadow-md text-black w-full">
-                    <h1 class="mb-8 text-3xl text-center">Sign up</h1>
-                    <input 
-                        type="text"
-                        class="block border border-grey-light w-full p-3 rounded mb-4"
-                        name="fullname"
-                        placeholder="Full Name" />
-
-                    <input 
-                        type="text"
-                        class="block border border-grey-light w-full p-3 rounded mb-4"
-                        name="email"
-                        placeholder="Email" />
-
-                    <input 
-                        type="password"
-                        class="block border border-grey-light w-full p-3 rounded mb-4"
-                        name="password"
-                        placeholder="Password" />
-                    <input 
-                        type="password"
-                        class="block border border-grey-light w-full p-3 rounded mb-4"
-                        name="confirm_password"
-                        placeholder="Confirm Password" />
-
-                    <button
-                        type="submit"
-                        class="w-full text-center py-3 rounded bg-green text-white hover:bg-green-dark focus:outline-none my-1"
-                    >Create Account</button>
-
-                    <div class="text-center text-sm text-grey-dark mt-4">
-                        By signing up, you agree to the 
-                        <a class="no-underline border-b border-grey-dark text-grey-dark" href="#">
-                            Terms of Service
-                        </a> and 
-                        <a class="no-underline border-b border-grey-dark text-grey-dark" href="#">
-                            Privacy Policy
-                        </a>
-                    </div>
-                </div>
-
-                <div class="text-grey-dark mt-6">
-                    Already have an account? 
-                    <a class="no-underline border-b border-blue text-blue" href="../login/">
-                        Log in
-                    </a>.
-                </div>
+      <div className="min-h-screen flex flex-col my-10">
+        {/* Form Container */}
+        <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
+          {/* form */}
+          <form  onSubmit={handleSubmit}>
+          <div
+            className="bg-white px-6 py-8 rounded border-gray-100 border-2 text-black w-full"
+          >
+            <h1 className="mb-8 text-3xl text-center text-cerulean-blue">
+              Register Account
+            </h1>
+            <input
+              type="text"
+              className="block border border-grey-light w-full p-3 rounded mb-4"
+              placeholder="Full Name"
+                 //   save value to state
+              value={name}
+              onChange={e => setName(e.target.value)}
+              required
+            />
+            <input
+              type="email"
+              className="block border border-grey-light w-full p-3 rounded mb-4"
+              name="email"
+              placeholder="Email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              required
+            />
+            <input
+              type="password"
+              className="block border border-grey-light w-full p-3 rounded mb-4"
+              name="password"
+              placeholder="Password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              required
+            />
+            <input
+              type="password"
+              className="block border border-grey-light w-full p-3 rounded mb-4"
+              name="confirm_password"
+              placeholder="Confirm Password"
+            />
+  
+            <button
+              type="submit"
+              className="w-full text-center py-3 rounded-full bg-cerulean-blue text-white focus:outline-none my-1"
+            >
+              Register
+            </button>
+            <div className="text-center text-sm text-grey-dark mt-4">
+              By registering you agree to our
+              <a
+                className="no-underline hover:underline text-cerulean-blue pl-1"
+                href="#"
+              >
+                <em>Terms of Service</em>
+              </a>
             </div>
+          </div>
+          <div className="text-grey-dark mt-6">
+            Already have an account?
+            <a
+              className="no-underline hover:underline text-cerulean-blue pl-1"
+              href="../login/"
+            >
+              <em>Login</em>
+            </a>
+          </div>
+          </form>
         </div>
-    )
-}
-
-export default Register;
+      </div>
+    );
+  };
+  
+  export default Register;
+  
