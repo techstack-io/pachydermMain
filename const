@@ -1,0 +1,9 @@
+DATABASE=mongodb+srv://pach_admin:7kpjHrHc0UPeCw08@pachcluster.qoyhjys.mongodb.net/?retryWrites=true&w=majority
+
+PORT=8000
+
+MongodbAtlas='SuWT0ChREhue'
+
+DB User {
+    pach_admin='7kpjHrHc0UPeCw08'
+}
