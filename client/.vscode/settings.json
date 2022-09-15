@@ -1,4 +1,5 @@
 {
+    "eslint.enable": true,
     "jshint.enable": false,
     "standard.enable": false
 }
