@@ -1,6 +1,7 @@
 // Import hooks
 import { useState } from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Register = () => {
     const [name, setName] =useState('');
@@ -10,13 +11,18 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         // console.table({ name, email, password });
-        const { data } = await axios.post(`http://localhost:8000/api/register`, { 
-          name,
-          email, 
-          password, 
-        });
-        console.log('Register Response', data);
-    };
+        try {
+          const { data } = await axios.post(`http://localhost:8000/api/register`, {
+            name,
+            email,
+            password,
+          });
+          // console.log("REGISTER RESPONSE", data);
+          toast.success("Registration successful. Please login.");
+        } catch (err) {
+          toast.error(err.response.data);
+        }
+      };
 
     return (
       <div className="min-h-screen flex flex-col my-10">
