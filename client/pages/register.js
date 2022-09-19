@@ -2,25 +2,30 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import {syncOutlined} from '@ant-design/icons';
 
 const Register = () => {
     const [name, setName] =useState('');
     const [email, setEmail] =useState('');
     const [password, setPassword] =useState('');
+    const [loading, setLoading] =useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         // console.table({ name, email, password });
         try {
-          const { data } = await axios.post(`http://localhost:8000/api/register`, {
+          setLoading(true);
+          const { data } = await axios.post(`/api/register`, {
             name,
             email,
             password,
           });
           // console.log("REGISTER RESPONSE", data);
           toast.success("Registration successful. Please login.");
+          setLoading(false);
         } catch (err) {
           toast.error(err.response.data);
+          setLoading(false);
         }
       };
 
@@ -73,8 +78,10 @@ const Register = () => {
             <button
               type="submit"
               className="w-full text-center py-3 rounded-full bg-cerulean-blue text-white focus:outline-none my-1"
+              disabled={!name || !email || !password || loading}
             >
-              Register
+              
+            {loading ? <syncOutlined spin />: 'Register'}
             </button>
             <div className="text-center text-sm text-grey-dark mt-4">
               By registering you agree to our

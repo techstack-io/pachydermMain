@@ -2,6 +2,7 @@ import TopNav from '../components/TopNav';
 import '../styles/globals.css';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import 'antd/dist/antd.css';
 
 function MyApp({ Component, pageProps }) {
   return (
