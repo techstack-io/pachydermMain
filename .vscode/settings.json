@@ -3,12 +3,12 @@
     "standard.enable": false,
     "eslint.enable": false,
     "workbench.colorCustomizations": {
-        "statusBar.foreground": "#E4EC82",
-        "statusBar.background": "#606900",
-        "statusBarItem.hoverBackground": "#35560D",
-        "statusBarItem.remoteForeground": "#AEFF98",
-        "statusBarItem.remoteBackground": "#298212",
+        "statusBar.foreground": "#D5F381",
+        "statusBar.background": "#527000",
+        "statusBarItem.hoverBackground": "#2D5911",
+        "statusBarItem.remoteForeground": "#A6FFA5",
+        "statusBarItem.remoteBackground": "#1F851E",
         "statusBar.debuggingForeground": "#000000",
-        "statusBar.debuggingBackground": "#97A036"
+        "statusBar.debuggingBackground": "#89A735"
     }
 }

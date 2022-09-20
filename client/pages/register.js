@@ -3,6 +3,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import {syncOutlined} from '@ant-design/icons';
+import Link from 'next/link';
 
 const Register = () => {
     const [name, setName] =useState('');
@@ -93,13 +94,18 @@ const Register = () => {
               </a>
             </div>
           </div>
-          <div className="text-grey-dark mt-6">
-            Already have an account?
+          <div className="text-grey-dark mt-6 text-center">
+            Already registered?
+            <Link href='/login'>
+              <span className='cursor-pointer no-underline hover:underline text-cerulean-blue pl-1'>
+                <em>
+                  Login
+                  </em>
+              </span>
+                </Link>
             <a
-              className="no-underline hover:underline text-cerulean-blue pl-1"
-              href="../login/"
+
             >
-              <em>Login</em>
             </a>
           </div>
           </form>
