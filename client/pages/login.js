@@ -1,49 +1,107 @@
-const  Login = () => {
+// Import hooks
+import { useState } from 'react';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import {syncOutlined} from '@ant-design/icons';
+import Link from 'next/link';
+
+const Login = () => {
+    const [email, setEmail] =useState('');
+    const [password, setPassword] =useState('');
+    const [loading, setLoading] =useState(false);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        // console.table({ name, email, password });
+        try {
+          setLoading(true);
+          const { data } = await axios.post(`/api/register`, {
+            email,
+            password,
+          });
+          console.log("LOGIN RESPONSE", data);
+
+        //   setLoading(false);
+        } catch (err) {
+          toast.error(err.response.data);
+          setLoading(false);
+        }
+      };
+
     return (
-        <div className="bg-grey-lighter min-h-screen flex flex-col my-10">
-            <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
-                <div className="bg-white px-6 py-8 rounded  border-gray-100	 border-2 text-black w-full">
-                    <h1 className="mb-8 text-3xl text-center mr-8 text-cerulean-blue">
-                        Login Account
-                    </h1>
-                    <input 
-                        type="text"
-                        className="block border border-grey-light w-full p-3 rounded mb-4"
-                        name="fullname"
-                        placeholder="Full Name" />
-
-                    <input 
-                        type="text"
-                        className="block border border-grey-light w-full p-3 rounded mb-4"
-                        name="email"
-                        placeholder="Email" />
-
-                    <input 
-                        type="password"
-                        className="block border border-grey-light w-full p-3 rounded mb-4"
-                        name="password"
-                        placeholder="Password" />
-                    <input 
-                        type="password"
-                        className="block border border-grey-light w-full p-3 rounded mb-4"
-                        name="confirm_password"
-                        placeholder="Confirm Password" />
-                    <button
-                        type="submit"
-                        className="w-full text-center py-3 rounded-full bg-cerulean-blue text-white focus:outline-none my-1"
-                    >
-                        Login
-                    </button>
-                </div>
-                <div className="text-grey-dark mt-6">
-                    Don't have and account? 
-                    <a className="no-underline hover:underline text-cerulean-blue ml-1" href="../register/">
-                        <em>Register Here</em>
-                    </a>
-                </div>
+      <div className="min-h-screen flex flex-col my-24">
+        {/* Form Container */}
+        <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
+          {/* form */}
+          <form  onSubmit={handleSubmit}>
+          <div
+            className="bg-white px-6 py-8 rounded border-gray-100 border-2 text-black w-full"
+          >
+            <h1 className="mb-8 text-3xl text-center text-tanzanite-blue">
+              LOGIN
+            </h1>
+            <input
+              type="email"
+              className="block border border-grey-light w-full p-3 rounded mb-4"
+              name="email"
+              placeholder="Email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              required
+            />
+            <input
+              type="password"
+              className="block border border-grey-light w-full p-3 rounded mb-4"
+              name="password"
+              placeholder="Password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              required
+            />
+            <input
+              type="password"
+              className="block border border-grey-light w-full p-3 rounded mb-4"
+              name="confirm_password"
+              placeholder="Confirm Password"
+            />
+  
+            <button
+              type="submit"
+              className="w-full text-center py-3 rounded-full bg-carnation-pink text-white focus:outline-none my-1"
+              disabled={!email || !password || loading}
+            >
+              
+            {loading ? <syncOutlined spin />: 'Login'}
+            </button>
+            <div className="text-center text-sm text-grey-dark mt-4">
+              By registering you agreed to our
+              <a
+                className="no-underline hover:underline text-cerulean-blue pl-1"
+                href="#"
+              >
+                <em>Terms of Service</em>
+              </a>
             </div>
-        </div>
-    )
-}
+          </div>
+          <div className="text-grey-dark mt-6 text-center">
+            Not registered?
+            <Link href='/register'>
+              <span className='cursor-pointer no-underline hover:underline text-cerulean-blue pl-1'>
+                <em>
+                  Register
+                  </em>
+              </span>
+                </Link>
+            <a
 
-export default Login;
+            >
+            </a>
+          </div>
+          </form>
+        </div>
+      </div>
+    );
+  };
+  
+  export default Login;
+  

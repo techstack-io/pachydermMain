@@ -13,9 +13,9 @@ const { Item } = Menu;
 const TopNav = () => {
 const [current, setCurrent] = useState("");
 
-  useEffect(() => {
+useEffect(() => {
     process.browser && setCurrent(window.location.pathname);
-  }, [process.browser && window.location.pathname]);
+}, [process.browser && window.location.pathname]);
 
   return (
     <>
@@ -26,7 +26,7 @@ const [current, setCurrent] = useState("");
               <a className="toggleColour text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl">
                 <div>
                   <img
-                    src="/img/logo-1.svg"
+                    src="/img/logo-2.svg"
                     alt="logo"
                     width="75"
                     height="auto"
@@ -34,7 +34,7 @@ const [current, setCurrent] = useState("");
                 </div>
               </a>
             </Link>
-            <div className="font-Bebas text-cerulean-blue pt-4 pl-4 sm: text-2xl md:text-5xl">
+            <div className="font-Bebas text-tanzanite-blue pt-4 pl-4 sm: text-2xl md:text-5xl">
               PACHYDERM ACADEMY
             </div>
           </div>

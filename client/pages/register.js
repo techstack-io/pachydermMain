@@ -31,7 +31,7 @@ const Register = () => {
       };
 
     return (
-      <div className="min-h-screen flex flex-col my-10">
+      <div className="min-h-screen flex flex-col my-24">
         {/* Form Container */}
         <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
           {/* form */}
@@ -39,8 +39,8 @@ const Register = () => {
           <div
             className="bg-white px-6 py-8 rounded border-gray-100 border-2 text-black w-full"
           >
-            <h1 className="mb-8 text-3xl text-center text-cerulean-blue">
-              Register Account
+            <h1 className="mb-8 text-3xl text-center text-tanzanite-blue">
+              REGISTER
             </h1>
             <input
               type="text"
@@ -78,7 +78,7 @@ const Register = () => {
   
             <button
               type="submit"
-              className="w-full text-center py-3 rounded-full bg-cerulean-blue text-white focus:outline-none my-1"
+              className="w-full text-center py-3 rounded-full bg-carnation-pink text-white focus:outline-none my-1"
               disabled={!name || !email || !password || loading}
             >
               

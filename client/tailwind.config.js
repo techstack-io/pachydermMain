@@ -11,7 +11,9 @@ module.exports = {
       },
       colors: {
         'cerulean-blue': '#324FAE',
-        'dark-tangerine': '#FFB020'
+        'curious-blue': '#35A0DE',
+        'tanzanite-blue': '#124C6E',
+        'carnation-pink': '#F75467',
       }
     },
   },
