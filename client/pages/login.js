@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import {syncOutlined} from '@ant-design/icons';
+import {SyncOutlined} from '@ant-design/icons';
 import Link from 'next/link';
 
 const Login = () => {
@@ -15,7 +15,7 @@ const Login = () => {
         // console.table({ name, email, password });
         try {
           setLoading(true);
-          const { data } = await axios.post(`/api/register`, {
+          const { data } = await axios.post(`/api/login`, {
             email,
             password,
           });
@@ -71,7 +71,7 @@ const Login = () => {
               disabled={!email || !password || loading}
             >
               
-            {loading ? <syncOutlined spin />: 'Login'}
+            {loading ? <SyncOutlined spin />: 'Login'}
             </button>
             <div className="text-center text-sm text-grey-dark mt-4">
               By registering you agreed to our
