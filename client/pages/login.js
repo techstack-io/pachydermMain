@@ -1,5 +1,4 @@
-// Import hooks
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import {SyncOutlined} from '@ant-design/icons';
@@ -12,38 +11,47 @@ const Login = () => {
     const [password, setPassword] =useState('');
     const [loading, setLoading] =useState(false);
 
-    // State 
-    const { state, dispatch } = useContext(Context);
+     // state
+  const { state, dispatch } = useContext(Context);
+  // const {
+  //   state: { user },
+  //   dispatch,
+  // } = useContext(Context);
+  
+  const { user } = state;
 
-    // Router
-    const router = useRouter();
+  // router
+  const router = useRouter();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        // console.table({ name, email, password });
-        try {
-          setLoading(true);
-          const { data } = await axios.post(`/api/login`, {
-            email,
-            password,
-          });
-          // console.log("LOGIN RESPONSE", data);
-          dispatch({
-            type: "LOGIN",
-            payload: data,
-          });
+  useEffect(() => {
+    if (user !== null) router.push("/");
+  }, [user]);
 
-                // save in local storage
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // console.table({ name, email, password });
+    try {
+      setLoading(true);
+      const { data } = await axios.post(`/api/login`, {
+        email,
+        password,
+      });
+      // console.log("LOGIN RESPONSE", data);
+      dispatch({
+        type: "LOGIN",
+        payload: data,
+      });
+      // save in local storage
       window.localStorage.setItem("user", JSON.stringify(data));
       // redirect
       router.push("/");
-
-        //   setLoading(false);
-        } catch (err) {
-          toast.error(err.response.data);
-          setLoading(false);
-        }
-      };
+      // setLoading(false);
+    } catch (err) {
+      toast(err.response.data);
+      setLoading(false);
+    }
+  };
 
     return (
       <div className="min-h-screen flex flex-col my-24">
@@ -52,7 +60,7 @@ const Login = () => {
           {/* form */}
           <form  onSubmit={handleSubmit}>
           <div
-            className="bg-white px-6 py-8 rounded border-gray-100 border-2 text-black w-full"
+            className="bg-white px-6 py-8 rounded border-gray-100 border-2 text-black"
           >
             <h1 className="mb-8 text-3xl text-center text-tanzanite-blue">
               LOGIN

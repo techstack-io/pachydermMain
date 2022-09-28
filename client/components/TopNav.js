@@ -4,8 +4,13 @@ import { Menu } from "antd";
 
 import {
   AppstoreOutlined,
+  CoffeeOutlined,
+  DashboardOutlined,
   LoginOutlined,
+  LogoutOutlined,
   UserAddOutlined,
+  CarryOutOutlined,
+  TeamOutlined,
 } from "@ant-design/icons";
 
 import { Context } from '../context';
@@ -13,11 +18,14 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 
-const { Item } = Menu;
+const { Item, SubMenu, ItemGroup } = Menu;
 
 const TopNav = () => {
   const [current, setCurrent] = useState("");
   const { state, dispatch } = useContext(Context);
+
+  const { user } = state;
+
   const router = useRouter();
 
 useEffect(() => {
@@ -53,9 +61,9 @@ const logout = async () => {
               PACHYDERM ACADEMY
             </div>
           </div>
-          <div className="w-full flex-grow lg:flex lg:items-center lg:w-auto mt-2 lg:mt-0 bg-white lg:bg-transparent text-black p-4 lg:p-0 z-20">
-            <ul className="list-reset lg:flex justify-end flex-1">
-              <Menu mode="horizontal" selectedKeys={[current]} className='justify-center'>
+          <div className="w-full flex-grow lg:flex lg:items-center lg:w-auto lg:mt-6 bg-white lg:bg-transparent text-black z-20">
+            <ul className="list-reset lg:flex justify-center flex-1">
+              <Menu mode="horizontal" selectedKeys={[current]} className='justify-center w-full'>
                 <Item
                   key="/"
                   onClick={(e) => setCurrent(e.key)}
@@ -65,11 +73,12 @@ const logout = async () => {
                     <a>App</a>
                   </Link>
                 </Item>
-
+                { user === null && (
+                <>
                 <Item
-                  key="/login"
-                  onClick={(e) => setCurrent(e.key)}
-                  icon={<LoginOutlined />}
+                key="/login"
+                onClick={(e) => setCurrent(e.key)}
+                icon={<LoginOutlined />}
                 >
                   <Link href="/login">
                     <a>Login</a>
@@ -85,9 +94,18 @@ const logout = async () => {
                     <a>Register</a>
                   </Link>
                 </Item>
-                <Item onClick={logout} icon={<UserAddOutlined />} className="float-right">
-                 Logout
-      </Item>
+                  </>
+                )}
+              
+              { user !== null && (
+               <SubMenu icon={<DashboardOutlined />} title={user && user.name}>
+                 <Item onClick={logout} icon={<UserAddOutlined />}
+                >
+                Logout
+                </Item>
+               </SubMenu>
+              )}
+
               </Menu>
             </ul>
           </div>

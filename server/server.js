@@ -2,7 +2,14 @@ import express from "express";
 import cors from "cors";
 import { readdirSync } from "fs";
 import mongoose from 'mongoose';
+import csrf from 'csrf';
+
+const csrfProtection = csrf({
+  cookie: true
+});
+
 const morgan = require("morgan");
+
 require("dotenv").config();
 
 // create express app
